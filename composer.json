@@ -75,7 +75,11 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/bosunski/framework"
+            "url": "https://github.com/bosunski/xeviant-framework"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/bosunski/laravel-framework"
         }
     ]
 }
