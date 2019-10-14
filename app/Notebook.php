@@ -12,6 +12,7 @@ class Notebook
     public function __construct(string $notebookPath)
     {
         $this->notebookPath = $notebookPath;
+        var_dump($notebookPath);
     }
 
     public function getNotebookFilePath(): string
@@ -21,9 +22,7 @@ class Notebook
 
     public function getNotebookDirectory(): string
     {
-        return '~' . DIRECTORY_SEPARATOR . 'ciroue'
-            . DIRECTORY_SEPARATOR . 'users'
-            . DIRECTORY_SEPARATOR . $this->notebookPath;
+        return notebook_path($this->notebookPath);
     }
 
     public function getFileName(): string
