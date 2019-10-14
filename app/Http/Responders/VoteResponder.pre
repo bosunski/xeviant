@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Responders;
+
+use App\Components\VoteComponent;
+use Xeviant\Async\Foundation\Request\Request;
+use Xeviant\Async\Foundation\Response\Response;
+use Xeviant\Async\Foundation\View\ViewRenderer;
+
+class VoteResponder
+{
+    public function showVotePage(Request $request)
+    {
+        return ViewRenderer::make(<App.Components.AppComponent matric={$request->getCookie('matric', null)}/>);
+    }
+
+    public function cancelVote(Request $request)
+    {
+        return Response::make()->cookie('matric', '')->redirect('/');
+    }
+}

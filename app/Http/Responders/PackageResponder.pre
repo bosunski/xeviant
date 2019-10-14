@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Responders;
+
+use function Amp\call;
+use function Amp\File\exists;
+use function Amp\File\get;
+use function Amp\File\isfile;
+use function Amp\File\open;
+use function Amp\Iterator\toArray;
+use Amp\ReactAdapter\ReactAdapter;
+use App\AppClient;
+use Clue\React\Packagist\Api\Client as PackagistClient;
+use Http\Client\Exception;
+use Illuminate\Container\EntryNotFoundException;
+use Packagist\Api\Result\Result;
+use React\EventLoop\LoopInterface;
+use Xeviant\Async\Foundation\Application\AsyncAsyncApplication;
+use Xeviant\Async\Foundation\Response\Response;
+use Xeviant\Async\Foundation\Server\WebSocketServer;
+use Xeviant\Async\Foundation\View\ViewRenderer;
+use Clue\React\Buzz\Browser;
+
+class PackageResponder
+{
+    public function listPackages(WebSocketServer $server, AppClient $codeClient, $data)
+    {
+        return Response::make(json_encode(["name" => "Bosun"]), 200, ['content-type' => 'application/json']);
+    }
+
+    public function searchPackage(WebSocketServer $server, AppClient $codeClient, $data)
+    {
+        $browser = new Browser(AsyncAsyncApplication::getInstance()->make(LoopInterface::class));
+
+        $client = new PackagistClient($browser);
+
+        try {
+            /**
+             * @var $results Result[]
+             */
+            $results = await $client->search($data, ["per_page" => 10]);
+
+            $server->send(
+                json_encode(["event" => "package.result", "data" => collect($results)->map(
+                    fn(Result $package) => ["installed" => false, "installing" => false, "name" => $package->getName()]
+                )->toArray()]),
+                $codeClient->getClientId()
+            );
+
+//            $a = [
+//                ["installed" => false, "installing" => false, "name" => "xeviant/paystackasdasdasdasdasdasdasd"],
+//                ["installed" => false, "installing" => false, "name" => "xeviant/paystackasdasdasdasdasdasdasd"],
+//                ["installed" => false, "installing" => false, "name" => "xeviant/paystackasdasdasdasdasdasdasd"],
+//            ];
+//            $server->send(
+//                json_encode(["event" => "package.result", "data" => $a]),
+//                $codeClient->getClientId()
+//            );
+
+        } catch (\Exception $exception) {
+            var_dump($exception->getMessage());
+            $server->send(
+                json_encode(["event" => "package.result", "data" => []]),
+                $codeClient->getClientId()
+            );
+        }
+    }
+
+    public function requirePackage(WebSocketServer $server, AppClient $codeClient, $pkgName)
+    {
+        if (await $codeClient->getComposer()->init()) {
+            var_dump($pkgName);
+            $codeClient->getComposer()->requirePackage($pkgName, AsyncAsyncApplication::getInstance()->get('socket.server'));
+        }
+    }
+
+    public function removePackage(WebSocketServer $server, AppClient $codeClient, $pkgName)
+    {
+        if (await $codeClient->getComposer()->init()) {
+            $codeClient->getComposer()->removePackage($pkgName, AsyncAsyncApplication::getInstance()->get('socket.server'));
+        }
+    }
+
+    public function getPackageDetails(): string
+    {
+    }
+}

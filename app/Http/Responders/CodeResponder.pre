@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Responders;
+
+use Amp\Http\Server\Session\Session;
+use App\AppClient;
+use Http\Client\Exception;
+use Xeviant\Async\Foundation\Request\Request;
+use Xeviant\Async\Foundation\Server\WebSocketServer;
+use Xeviant\Async\Foundation\View\ViewRenderer;
+use Xeviant\Async\Foundation\Response\Response;
+use Throwable;
+
+class CodeResponder
+{
+    public function showCodeEditor(Request $request, $codeSessionId)
+    {
+        /** @var $session Session */
+//        $session = $request->session()->get("codeSessionId");
+
+        return ViewRenderer::make(<App.Components.EditorLayout codeId={$codeSessionId} />);
+    }
+
+    public function runCode(WebSocketServer $server, AppClient $codeClient, $data)
+    {
+        yield from $codeClient->runCode($data);
+    }
+
+    public function startCodeSession(Request $request)
+    {
+        $request->session()->put("codeSessionId", "bingo");
+
+        return Response::make()->redirect("/code/bingo")->cookie("bang", "bang");
+    }
+}

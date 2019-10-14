@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Responders;
+
+use Amp\Http\Cookie\InvalidCookieException;
+use Amp\Http\Cookie\ResponseCookie;
+use Amp\Http\Server\Session\Session;
+use Generator;
+use Xeviant\Async\Foundation\Request\Request;
+use Xeviant\Async\Foundation\Response\Response;
+use Xeviant\Async\Foundation\View\ViewRenderer;
+use function Pre\Phpx\Html\render;
+
+class ExternalPageResponder
+{
+    public function showHome(Request $request)
+    {
+        return ViewRenderer::make(<App.Components.HomeComponent/>);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response|Generator
+     * @throws InvalidCookieException
+     */
+async public function goToVotePage(Request $request)
+{
+    return Response::make()->cookie(
+        'matric',
+        await from $request->input('matric')
+            )->redirect('/vote');
+    }
+}
