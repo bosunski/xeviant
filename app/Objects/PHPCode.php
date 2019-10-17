@@ -2,6 +2,7 @@
 
 namespace App\Objects;
 
+use Illuminate\Support\Str;
 use PhpParser\Error;
 use PhpParser\Node;
 use PhpParser\NodeTraverser;
@@ -17,6 +18,13 @@ class PHPCode
      */
     private $code;
 
+    protected $autoloadRequires = [
+        "require('vendor/autoload.php')",
+        "include('vendor/autoload.php')",
+        "require_once('vendor/autoload.php')",
+        "include_once('vendor/autoload.php')",
+    ];
+
     public function __construct(string $code)
     {
         $this->code = $code;
@@ -24,10 +32,27 @@ class PHPCode
 
     public function __toString()
     {
-        return $this->applyPolyFills($this->code);
+        return $this->applyPolyFills($this->code)
+                ->addAutoloader()
+                ->getCode();
     }
 
-    public function applyPolyFills(string $code): string {
+    public function addAutoloader(): PHPCode
+    {
+        $this->code = Str::start(Str::after($this->code, "<?php"), "<?php require_once('vendor/autoload.php');");
+        return $this;
+    }
+
+    public function insertStringAfter($subject): string {
+
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function applyPolyFills(string $code): PHPCode {
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
 
         try {
@@ -56,6 +81,8 @@ class PHPCode
 
         $ast = $traverser->traverse($ast);
         $prettyPrinter = new Standard;
-        return $prettyPrinter->prettyPrintFile($ast);
+        $this->code = $prettyPrinter->prettyPrintFile($ast);
+
+        return $this;
     }
 }

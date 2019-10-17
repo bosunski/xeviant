@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dda5412a353b083f28817e66f5f8a9d",
+    "content-hash": "186b217b256ae64871f5abc1350c0ef1",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2353,6 +2353,170 @@
             "time": "2019-03-17T18:48:37+00:00"
         },
         {
+            "name": "esroyo/block-react-settle",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.expoteca.com/esroyo/reactphp-block-settle",
+                "reference": "0ffb204d7c902ff6c2628d757b67d701f86f5818"
+            },
+            "require": {
+                "clue/block-react": "^1.3",
+                "esroyo/react-promise-settle": "^1.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1 || ^6.4",
+                "react/event-loop": "^1.0",
+                "react/promise": "^2.7",
+                "react/promise-timer": "^1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Esroyo\\React\\Block\\": "src"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carles Escrig i Royo",
+                    "email": "esroyo@gmail.com",
+                    "homepage": "https://carlescrig.info"
+                }
+            ],
+            "description": "Add Promise/settle functionality when integrating async components built for ReactPHP in a traditional, blocking environment.",
+            "keywords": [
+                "async",
+                "await",
+                "blocking",
+                "event loop",
+                "promise",
+                "reactphp",
+                "settle",
+                "sleep",
+                "synchronous"
+            ],
+            "time": "2019-03-27T18:17:14+00:00"
+        },
+        {
+            "name": "esroyo/flysystem-async",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.expoteca.com/esroyo/php-flysystem-async",
+                "reference": "4816b4dee930afbe0d57cd32f1c193f228945202"
+            },
+            "require": {
+                "esroyo/block-react-settle": "^1.0",
+                "league/flysystem": "^1.0",
+                "php": ">=5.4.0",
+                "react/filesystem": "^0.1.1",
+                "react/promise": "^2.7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1 || ^6.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Esroyo\\FlysystemAsync\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Esroyo\\FlysystemAsync\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carles Escrig i Royo",
+                    "email": "esroyo@gmail.com",
+                    "homepage": "https://carlescrig.info"
+                }
+            ],
+            "description": "Flysystem Async test",
+            "keywords": [
+                "Flysystem",
+                "async"
+            ],
+            "time": "2019-05-21T15:00:26+00:00"
+        },
+        {
+            "name": "esroyo/react-promise-settle",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.expoteca.com/esroyo/reactphp-promise-settle",
+                "reference": "fcfc6f1404d1ae0a438cd558c7877ca5793245df"
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "react/promise": "^2.7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1 || ^6.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Esroyo\\React\\Promise\\": "src"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carles Escrig i Royo",
+                    "email": "esroyo@gmail.com",
+                    "homepage": "https://carlescrig.info"
+                }
+            ],
+            "description": "Returns a promise that is fulfilled when all of the provided promises have been fulfilled or rejected.",
+            "keywords": [
+                "event-loop",
+                "promise",
+                "promises",
+                "reactphp",
+                "settle"
+            ],
+            "time": "2019-03-26T18:46:44+00:00"
+        },
+        {
             "name": "evenement/evenement",
             "version": "v3.0.1",
             "source": {
@@ -3473,16 +3637,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/443fe5f1498147e0fbc792142b5dc43e2e8a533f",
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f",
                 "shasum": ""
             },
             "require": {
@@ -3536,7 +3700,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-14T14:18:59+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -7918,7 +8082,7 @@
             "dist": {
                 "type": "path",
                 "url": "/Users/bosunsky/projects/oss/framework",
-                "reference": "b9da127b20f2abba52fd9f4882d54ed659556cd2"
+                "reference": "09c55244350e7401c2d2cafeacf8f62113a4046d"
             },
             "require": {
                 "doctrine/inflector": "^1.1",
@@ -8071,12 +8235,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bosunski/paystack.git",
-                "reference": "000cf49c9eecae764bd8147e335a897c90a0306f"
+                "reference": "230543d3587abd1eef841305ecbe00d54287dc2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bosunski/paystack/zipball/000cf49c9eecae764bd8147e335a897c90a0306f",
-                "reference": "000cf49c9eecae764bd8147e335a897c90a0306f",
+                "url": "https://api.github.com/repos/bosunski/paystack/zipball/230543d3587abd1eef841305ecbe00d54287dc2b",
+                "reference": "230543d3587abd1eef841305ecbe00d54287dc2b",
                 "shasum": ""
             },
             "require": {
@@ -8115,7 +8279,7 @@
                 }
             ],
             "description": "A Paystack API Wrapper",
-            "time": "2019-10-04T21:15:08+00:00"
+            "time": "2019-10-16T10:36:37+00:00"
         },
         {
             "name": "yosymfony/resource-watcher",
@@ -10104,7 +10268,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "xeviant/framework": 20,
-        "xeviant/paystack": 20
+        "xeviant/paystack": 20,
+        "esroyo/flysystem-async": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

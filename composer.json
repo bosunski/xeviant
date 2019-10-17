@@ -11,8 +11,7 @@
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "laravel/tinker": "^1.0",
-        "xeviant/framework": "dev-splitserver",
-        "xeviant/paystack": "dev-master"
+        "xeviant/framework": "dev-splitserver"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

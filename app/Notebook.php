@@ -12,7 +12,6 @@ class Notebook
     public function __construct(string $notebookPath)
     {
         $this->notebookPath = $notebookPath;
-        var_dump($notebookPath);
     }
 
     public function getNotebookFilePath(): string
