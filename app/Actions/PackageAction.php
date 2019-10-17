@@ -4,6 +4,7 @@ namespace App\Actions;
 
 use App\ComposerProcessRunner;
 use App\Notebook;
+use App\Scripts\RemoveComposerPackage;
 use App\Scripts\RequireComposerPackage;
 use Clue\React\Buzz\Browser;
 use Clue\React\Packagist\Api\Client;
@@ -56,5 +57,12 @@ class PackageAction
         $script = new RequireComposerPackage($packageName, new Notebook($notebookPath));
         $process = new Process($script);
         ComposerProcessRunner::requirePackage($packageName, $process);
+    }
+
+    public function removePackage($notebookPath, $packageName)
+    {
+        $script = new RemoveComposerPackage($packageName, new Notebook($notebookPath));
+        $process = new Process($script);
+        ComposerProcessRunner::removePackage($packageName, $process);
     }
 }
