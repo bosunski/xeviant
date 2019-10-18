@@ -26,7 +26,6 @@ class PHPEvaluationResult
     {
         return $this->getEvalResult();
     }
-
     /**
      * @return string
      */

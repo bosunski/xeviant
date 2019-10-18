@@ -39,7 +39,8 @@ class PHPCode
 
     public function addAutoloader(): PHPCode
     {
-        $this->code = Str::start(Str::after($this->code, "<?php"), "<?php require_once('vendor/autoload.php');");
+        $this->code = Str::before($this->code,'<?php')
+                    . Str::start(Str::after($this->code, "<?php"), "<?php require_once('vendor/autoload.php');");
         return $this;
     }
 
