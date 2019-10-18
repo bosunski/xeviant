@@ -78,11 +78,11 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:bosunski/xeviant-framework"
+            "url": "git@github.com:bosunski/xeviant-framework.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:bosunski/laravel-framework"
+            "url": "git@github.com:bosunski/laravel-framework.git"
         }
     ]
 }

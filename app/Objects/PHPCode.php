@@ -59,7 +59,7 @@ class PHPCode
             $ast = $parser->parse($code);
         } catch (Error $error) {
             echo "Parse error: {$error->getMessage()}\n";
-            return $code;
+            return $this;
         }
 
         $traverser = new NodeTraverser();

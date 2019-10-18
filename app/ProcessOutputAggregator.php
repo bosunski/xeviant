@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Objects\PHPEvaluationResult;
 use React\ChildProcess\Process;
 use Xeviant\Async\Foundation\WebSocket\Session;
 
@@ -17,6 +18,7 @@ class ProcessOutputAggregator
      * @var Process
      */
     private $process;
+
     private $notebookPath;
 
     /**
@@ -38,9 +40,15 @@ class ProcessOutputAggregator
     public function exitHandler($exitCode)
     {
         if ($exitCode === 0) {
-            Session::sendEvent('Code.Evaluated.'.explode('/', $this->notebookPath)[1], $this->output);
+            Session::sendEvent(
+                'Code.Evaluated.'.explode('/', $this->notebookPath)[1],
+                (string)PHPEvaluationResult::make($this->output)
+            );
         } else {
-            Session::sendEvent('Code.Evaluated.'.explode('/', $this->notebookPath)[1], $this->output);
+            Session::sendEvent(
+                'Code.Evaluated.'.explode('/', $this->notebookPath)[1],
+                (string)PHPEvaluationResult::make($this->output)
+            );
         }
     }
 
