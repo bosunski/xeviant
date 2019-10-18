@@ -53,7 +53,8 @@ class PHPCode
         return $this->code;
     }
 
-    public function applyPolyFills(string $code): PHPCode {
+    public function applyPolyFills(string $code): PHPCode
+    {
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
 
         try {
