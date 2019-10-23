@@ -10,10 +10,10 @@ use React\ChildProcess\Process;
 
 class CodeController
 {
-    public function runCode($code, $notebookPath)
+    public function runCode($code, $notebookPath, $notebookId)
     {
         $script = new RunPHPCode(new PHPCode($code), new Notebook($notebookPath));
         $process = new Process((string) $script);
-        LocalCodeRunner::run($process, $notebookPath);
+        LocalCodeRunner::run($process, $notebookId);
     }
 }

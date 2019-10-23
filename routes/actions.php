@@ -11,5 +11,7 @@ return function(Actions $router) {
     $router->add("/package/search", 'App\Actions\PackageAction@searchPackage');
     $router->add("/package/require", 'App\Actions\PackageAction@requirePackage');
     $router->add("/package/remove", 'App\Actions\PackageAction@removePackage');
+
+    $router->add('/notebook/provision', 'App\Actions\NotebookAction@provision');
 };
 

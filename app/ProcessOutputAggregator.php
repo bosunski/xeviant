@@ -19,17 +19,17 @@ class ProcessOutputAggregator
      */
     private $process;
 
-    private $notebookPath;
+    private $notebookId;
 
     /**
      * ProcessOutputAggregator constructor.
      * @param Process $process
-     * @param $notebookPath
+     * @param $notebookId
      */
-    public function __construct(Process $process, $notebookPath)
+    public function __construct(Process $process, $notebookId)
     {
         $this->process = $process;
-        $this->notebookPath = $notebookPath;
+        $this->notebookId = $notebookId;
     }
 
     public function outputHandler($buffer)
@@ -41,13 +41,13 @@ class ProcessOutputAggregator
     {
         if ($exitCode === 0) {
             Session::sendEvent(
-                'Code.Evaluated.'.explode('/', $this->notebookPath)[1],
-                (string)PHPEvaluationResult::make($this->output)
+                'Code.Evaluated.'.$this->notebookId,
+                (string) PHPEvaluationResult::make($this->output ?? "")
             );
         } else {
             Session::sendEvent(
-                'Code.Evaluated.'.explode('/', $this->notebookPath)[1],
-                (string)PHPEvaluationResult::make($this->output)
+                'Code.Evaluated.'.$this->notebookId,
+                (string)PHPEvaluationResult::make($this->output ?? "")
             );
         }
     }

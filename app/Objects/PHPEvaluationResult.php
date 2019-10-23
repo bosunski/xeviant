@@ -11,15 +11,21 @@ class PHPEvaluationResult
      */
     private $evalResult;
 
-    public function __construct(string $evalResult)
+    public function __construct(string $evalResult = "")
     {
         $this->evalResult = $evalResult;
     }
 
-    public static function make(string $evalResult)
+    public static function make(string $evalResult = "")
     {
         $evalResult = new static($evalResult);
         return $evalResult;
+    }
+
+    public function convertNewlineToBr()
+    {
+        $this->evalResult = nl2br($this->evalResult);
+        return $this;
     }
 
     public function __toString()
@@ -31,6 +37,6 @@ class PHPEvaluationResult
      */
     public function getEvalResult(): string
     {
-        return str_replace(realpath(config('filesystem.codeStorage.root')), "", $this->evalResult);
+        return str_replace('/Users/bosunsky/ciroue/users', "", $this->evalResult);
     }
 }

@@ -11,23 +11,25 @@ use React\EventLoop\LoopInterface;
 
 class LocalCodeRunner implements ProcessRunner
 {
-    public static function run(Process $process, $notebookPath = null)
+    public static function run(Process $process, $notebookId = null)
     {
-        $handler = new ProcessOutputAggregator($process, $notebookPath);
+        $handler = new ProcessOutputAggregator($process, $notebookId);
         $process->start($loop = app(LoopInterface::class));
 
         $process->stdout->on('data', [$handler, 'outputHandler']);
         $process->stdout->on('error', [$handler, 'outputHandler']);
 
-        $process->on('exit', function($exitCode) use ($notebookPath, $handler) {
+        $process->on('exit', function($exitCode) use ($notebookId, $handler) {
             call_user_func_array([$handler, 'exitHandler'], [$exitCode]);
 
-            fetch(env('LARAVEL_APP_URL') . '/evaluated/' . Str::after($notebookPath, '/'))
+            fetch(env('LARAVEL_APP_URL') . '/evaluated/' . $notebookId)
                 ->then(function (ResponseInterface $response) {
                     //
                 }, function (Exception $e) {
                     var_dump($e->getMessage());
                 });
+
+            echo "Done";
     });
 
         $loop->addTimer(2.0, [$handler, 'timeoutHandler']);

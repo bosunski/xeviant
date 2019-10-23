@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\NotebookApplicationStarted;
+use App\Events\NotebookTunnellingComplete;
+use App\Listeners\StartNgrokProcess;
+use App\Listeners\UpdateNotebookOnStart;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        NotebookApplicationStarted::class => [
+            StartNgrokProcess::class,
+        ],
+        NotebookTunnellingComplete::class => [
+            UpdateNotebookOnStart::class,
         ],
     ];
 
