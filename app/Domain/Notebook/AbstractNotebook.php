@@ -2,9 +2,7 @@
 
 namespace App\Domain\Notebook;
 
-use Illuminate\Contracts\Foundation\Application;
 use React\EventLoop\LoopInterface;
-use Xeviant\Async\Laravel\LaravelApplication;
 
 abstract  class AbstractNotebook
 {

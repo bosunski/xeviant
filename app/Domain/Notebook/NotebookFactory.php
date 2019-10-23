@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Notebook;
-
 
 use Illuminate\Support\Str;
 
