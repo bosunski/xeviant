@@ -13,5 +13,6 @@ return function(Actions $router) {
     $router->add("/package/remove", 'App\Actions\PackageAction@removePackage');
 
     $router->add('/notebook/provision', 'App\Actions\NotebookAction@provision');
+    $router->add('/notebook/start', 'App\Actions\NotebookAction@startNotebookApplication');
 };
 
