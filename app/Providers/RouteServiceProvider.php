@@ -26,6 +26,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        $this->addWsApplicationRoutes();
     }
 
     /**
@@ -69,5 +71,10 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function addWsApplicationRoutes()
+    {
+        require base_path('routes/ws.php');
     }
 }

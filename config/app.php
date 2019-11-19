@@ -1,6 +1,7 @@
 <?php
 
 use Xeviant\Async\Foundation\ReactPHP\ReactServer;
+use Xeviant\Async\Foundation\Routing\Facades\Ws;
 use Xeviant\Async\Foundation\Server\ServerServiceProvider;
 
 return [
@@ -230,6 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //  Xeviant Defaults
+        'Ws' => Ws::class,
     ],
     'server' => [
         'driver' => 'react.server',
