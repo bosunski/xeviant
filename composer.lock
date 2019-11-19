@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca58b15512df64616868f95cce4acc1b",
+    "content-hash": "143a0516e78a55e6a6e3625bddcd6a2b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1664,6 +1664,105 @@
                 "reactphp"
             ],
             "time": "2019-04-03T13:58:40+00:00"
+        },
+        {
+            "name": "clue/docker-react",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/reactphp-docker.git",
+                "reference": "2b50bca69b92915e7d681d0f9cb45752c92331bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clue/reactphp-docker/zipball/2b50bca69b92915e7d681d0f9cb45752c92331bb",
+                "reference": "2b50bca69b92915e7d681d0f9cb45752c92331bb",
+                "shasum": ""
+            },
+            "require": {
+                "clue/buzz-react": "^2.0",
+                "clue/json-stream": "^0.1",
+                "php": ">=5.3",
+                "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3",
+                "react/promise": "^2.0 || ^1.1",
+                "react/promise-stream": "^1.0",
+                "react/socket": "^1.0",
+                "react/stream": "^1.0",
+                "rize/uri-template": "^0.3"
+            },
+            "require-dev": {
+                "clue/block-react": "^1.0 || ^0.3",
+                "clue/caret-notation": "^0.2",
+                "clue/tar-react": "^0.2",
+                "phpunit/phpunit": "^7.0 || ^6.0 || ^5.0 || ^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Clue\\React\\Docker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "Async, event-driven access to the Docker Engine API, built on top of ReactPHP.",
+            "homepage": "https://github.com/clue/reactphp-docker",
+            "keywords": [
+                "async",
+                "container",
+                "docker",
+                "reactphp"
+            ],
+            "time": "2019-09-19T14:25:50+00:00"
+        },
+        {
+            "name": "clue/json-stream",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/php-json-stream.git",
+                "reference": "85aca00beef6b59f9e063ca10320e32dde062d29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clue/php-json-stream/zipball/85aca00beef6b59f9e063ca10320e32dde062d29",
+                "reference": "85aca00beef6b59f9e063ca10320e32dde062d29",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Clue\\JsonStream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "Lightweight incremental streaming JSON parser",
+            "homepage": "https://github.com/clue/php-json-stream",
+            "keywords": [
+                "incremental parser",
+                "json",
+                "streaming parser"
+            ],
+            "time": "2015-03-10T22:43:19+00:00"
         },
         {
             "name": "clue/packagist-api-react",
@@ -9536,7 +9635,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

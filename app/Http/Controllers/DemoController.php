@@ -9,9 +9,9 @@ class DemoController extends Controller
 {
     public function index(Request $request)
     {
-        $p = new Promise(function ($resolve, $reject) use ($request) {
-            $resolve(response()->json($request->all(), 200));
-        });
+        $p = yield (new Promise(function ($resolve, $reject) use ($request) {
+            $resolve(response()->json($request->all() + ["name" => "Foo"], 200));
+        }));
 
         return $p;
     }
