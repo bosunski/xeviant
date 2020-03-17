@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use React\Promise\Promise;
+use App\Http\Requests\MultiplicationRequest;
+use App\User;
 
 class DemoController extends Controller
 {
-    public function index(Request $request)
+    public function index(MultiplicationRequest $request)
     {
-        return "Hello World";
+        return User::all()->then(function ($r) {
+            return response($r->pluck('name')->all())->header('X-Ban', 'Banner');
+        });
     }
 }

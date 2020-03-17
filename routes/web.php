@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/i', 'DemoController@index');
+Route::get('/', 'DemoController@index');

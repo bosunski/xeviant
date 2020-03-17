@@ -1,6 +1,6 @@
 <?php
 
-use Xeviant\Async\Foundation\ReactPHP\ReactServer;
+use Xeviant\Async\Foundation\ReactPHP\ReactPHPServerMaker;
 use Xeviant\Async\Foundation\Routing\Facades\Ws;
 use Xeviant\Async\Foundation\Server\ServerServiceProvider;
 

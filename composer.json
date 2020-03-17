@@ -8,12 +8,13 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "ext-json": "*",
         "clue/docker-react": "^1.0",
         "fideloper/proxy": "^4.0",
         "laravel/tinker": "^1.0",
-        "xeviant/framework": "dev-master"
+        "xeviant/framework": "dev-feature/eloquent",
+        "ext-pcntl": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -74,14 +75,6 @@
             "options": {
                 "symlink": true
             }
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/bosunski/xeviant-framework.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/bosunski/laravel-framework.git"
         }
     ]
 }
